@@ -1,4 +1,6 @@
-<?php namespace App\Lib;
+<?php
+
+namespace App\Lib;
 
 use Monolog\ErrorHandler;
 use Monolog\Handler\StreamHandler;
@@ -52,3 +54,7 @@ class Logger extends \Monolog\Logger
         self::$loggers['request']->info("REQUEST", $data);
     }
 }
+
+?>
+
+

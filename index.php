@@ -8,10 +8,21 @@ use App\Lib\Request;
 use App\Lib\Response;
 use App\Controllers\ProductController;
 use App\Model\Product;
+use App\Database\MySQLConnection;
 
 
 Router::get('/', function (Request $req, Response $res, $twig) {
-    ProductController::indexAction($twig);
+    $stmt = MySQLConnection::getConnection()->query('SELECT sku from Products');
+
+    while($row = $stmt->fetch()) {
+        echo $row['sku'] . "\n";
+    }
+    // ProductController::indexAction($twig);
 });
 
 App::run();
+
+?>
+
+
+

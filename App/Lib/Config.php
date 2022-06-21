@@ -1,4 +1,6 @@
-<?php namespace App\Lib;
+<?php
+
+namespace App\Lib;
 
 class Config
 {
@@ -13,3 +15,7 @@ class Config
         return !empty(self::$config[$key]) ? self::$config[$key] : $default;
     }
 }
+
+?>
+
+

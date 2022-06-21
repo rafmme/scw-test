@@ -19,3 +19,7 @@ class Response
         echo json_encode($data);
     }
 }
+
+?>
+
+

@@ -1,4 +1,6 @@
-<?php namespace App\Lib;
+<?php
+
+namespace App\Lib;
 
 class App
 {
@@ -7,3 +9,7 @@ class App
         Logger::enableSystemLogs();
     }
 }
+
+?>
+
+

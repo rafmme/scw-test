@@ -9,3 +9,6 @@ class ProductController
         echo $twig->render('index.html');
     }
 }
+
+?>
+
