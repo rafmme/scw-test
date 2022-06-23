@@ -1,39 +1,31 @@
 <?php
 
-namespace App\Service;
+    namespace App\Services;
 
-use App\Lib\Config;
+    use App\Services\iService;
+    use App\Models\Product;
 
-class ProductsService
+
+class ProductsService implements iService
 {
-    public static function getInstance()
-    {
+    public static function create($data){
 
     }
 
-    public static function all()
-    {
-
+    public static function fetchAll() {
+        return Product::findAll();
     }
 
-    public static function add($post)
-    {
+    public static function fetchOne($sku) {
+        return Product::findOne($sku);
     }
 
-    public static function findById(int $id)
-    {
-
-    }
-
-    public static function load()
-    {
-    }
-
-    public static function save()
-    {
+    public static function remove($sku) {
+        return  Product::destroy($sku);
     }
 }
 
-?>
+
+
 
 

@@ -7,17 +7,27 @@ use App\Lib\Router;
 use App\Lib\Request;
 use App\Lib\Response;
 use App\Controllers\ProductController;
-use App\Model\Product;
 use App\Database\MySQLConnection;
 
 
 Router::get('/', function (Request $req, Response $res, $twig) {
-    $stmt = MySQLConnection::getConnection()->query('SELECT sku from Products');
+    return ProductController::indexAction($twig);
+});
 
-    while($row = $stmt->fetch()) {
-        echo $row['sku'] . "\n";
-    }
-    // ProductController::indexAction($twig);
+Router::get('/products', function (Request $req, Response $res) {
+    return ProductController::fetchAll($req, $res);
+});
+
+Router::get('/products/([A-Za-z0-9]*)', function (Request $req, Response $res) {
+    return ProductController::fetchOne($req, $res);
+});
+
+Router::delete('/products/([A-Za-z0-9]*)', function (Request $req, Response $res) {
+    return ProductController::delete($req, $res);
+});
+
+Router::post('/products', function (Request $req, Response $res) {
+    return ProductController::create($req, $res);
 });
 
 App::run();

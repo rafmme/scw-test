@@ -3,15 +3,14 @@
 namespace App\Database;
 
 use PDO;
-use App\Database\DBConnectionInterface;
+use App\Database\iDBConnection;
 use App\Lib\DotEnv;
 
-class MySQLConnection implements DBConnectionInterface {
-    private static $dbConnection;
+class MySQLConnection implements iDBConnection {
+    private $dbConnection;
 
-    public static function getConnection() {
+    public function __construct() {
         try {
-        
             (new DotEnv('.env'))->load();
 
             $host =  \getenv('DB_HOST');
@@ -21,26 +20,26 @@ class MySQLConnection implements DBConnectionInterface {
             $password = \getenv('DB_PASSWORD');
             $dsn = "mysql:host=$host;port=$port;dbname=$db;";
 
-            if (!isset(self::$dbConnection)) {
-                self::$dbConnection = new PDO(
-                    $dsn,
-                    $user,
-                    $password,
-                    [
-                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                        PDO::ATTR_EMULATE_PREPARES => false,
-                    ]
-                );
-            }
-
-            return self::$dbConnection;
+            $this->dbConnection = new PDO(
+                $dsn,
+                $user,
+                $password,
+                [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES => false,
+                ]
+            );
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
+
+    public function getConnection() {
+        return $this->dbConnection;
+    }
 }
 
-?>
+
 
 
