@@ -3,13 +3,15 @@
 namespace App\Database;
 
 use PDO;
-use App\Database\iDBConnection;
+use App\Database\IDBConnection;
 use App\Lib\DotEnv;
 
-class MySQLConnection implements iDBConnection {
+class MySQLConnection implements IDBConnection
+{
     private $dbConnection;
 
-    public function __construct() {
+    public function __construct()
+    {
         try {
             (new DotEnv('.env'))->load();
 
@@ -35,11 +37,8 @@ class MySQLConnection implements iDBConnection {
         }
     }
 
-    public function getConnection() {
+    public function getConnection()
+    {
         return $this->dbConnection;
     }
 }
-
-
-
-

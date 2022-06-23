@@ -9,7 +9,3 @@ class App
         Logger::enableSystemLogs();
     }
 }
-
-?>
-
-

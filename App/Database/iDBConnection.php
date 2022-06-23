@@ -2,10 +2,7 @@
 
 namespace App\Database;
 
-interface iDBConnection {
+interface IDBConnection
+{
     public function getConnection();
 }
-
-
-
-

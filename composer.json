@@ -10,8 +10,8 @@
     "license": "MIT",
     "scripts": {
         "test": [
-            "./vendor/bin/phpcs --standard=psr2 App/",
-            "./vendor/bin/peridot Test/"
+            "./vendor/bin/phpcbf --standard=psr2 App/ && ./vendor/bin/phpcs --standard=psr2 App/",
+            "exit 0 && ./vendor/bin/peridot Test/"
         ]
     },
     "require": {

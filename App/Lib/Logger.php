@@ -38,12 +38,10 @@ class Logger extends \Monolog\Logger
 
         $LOG_PATH = Config::get('LOG_PATH', __DIR__ . '/../../logs');
 
-        // Error Log
         self::$loggers['error'] = new Logger('errors');
         self::$loggers['error']->pushHandler(new StreamHandler("{$LOG_PATH}/errors.log"));
         ErrorHandler::register(self::$loggers['error']);
 
-        // Request Log
         $data = [
             $_SERVER,
             $_REQUEST,
@@ -54,7 +52,3 @@ class Logger extends \Monolog\Logger
         self::$loggers['request']->info("REQUEST", $data);
     }
 }
-
-?>
-
-

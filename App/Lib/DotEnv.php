@@ -2,17 +2,20 @@
 
 namespace App\Lib;
 
-class DotEnv {
+class DotEnv
+{
     protected $path;
 
-    function __construct(string $path) {
+    public function __construct(string $path)
+    {
         if (!file_exists($path)) {
             throw new \InvalidArgumentException(\sprintf('%s does not exist', $path));
         }
         $this->path = $path;
     }
 
-    public function load() {
+    public function load()
+    {
         if (!is_readable($this->path)) {
             throw new \RuntimeException(\sprintf('%s file is not readable', $this->path));
         }
@@ -34,9 +37,4 @@ class DotEnv {
             }
         }
     }
-
 }
-
-
-
-
