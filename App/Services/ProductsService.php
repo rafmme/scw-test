@@ -11,7 +11,7 @@ class ProductsService implements IService
     {
         $product = new Product();
         $product->setName($data->name);
-        $product->setSku();
+        $product->setSku(strtoupper($data->sku));
         $product->setPrice($data->price);
         $product->setWeight($data->weight);
         $product->setSize($data->size);

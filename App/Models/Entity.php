@@ -1,4 +1,5 @@
 <?php
+
     namespace App\Models;
 
     use App\Lib\Util;
@@ -60,23 +61,23 @@ abstract class Entity
     abstract public function setPrice($price);
 
     abstract public function setSize($size);
-    
+
     abstract public function getSize();
 
     abstract public function setWeight($weight);
-    
+
     abstract public function getWeight();
 
     abstract public function setHeight($height);
-    
+
     abstract public function setWidth($width);
-    
+
     abstract public function setLength($length);
-    
+
     abstract public function getHeight();
-    
+
     abstract public function getWidth();
-    
+
     abstract public function getLength();
 
     abstract public function getSku();

@@ -1,4 +1,5 @@
 <?php
+
     namespace App\Models;
 
     use App\Models\Entity;
@@ -19,7 +20,7 @@ class Product extends Entity
 
     public function setSku($sku = '')
     {
-        $this->sku = $sku !== '' ? $sku : Util::generateSku($this->getName());
+        $this->sku = $sku !== '' || $sku !== NULL ? $sku : Util::generateSku($this->getName());
     }
 
     public function setName($name)
@@ -36,7 +37,7 @@ class Product extends Entity
     {
         $this->size = $size;
     }
-    
+
     public function getSize()
     {
         return $this->size;
@@ -46,7 +47,7 @@ class Product extends Entity
     {
         $this->weight = $weight;
     }
-    
+
     public function getWeight()
     {
         return $this->weight;
@@ -56,27 +57,27 @@ class Product extends Entity
     {
         $this->height = $height;
     }
-    
+
     public function setWidth($width)
     {
         $this->width = $width;
     }
-    
+
     public function setLength($length)
     {
         $this->length = $length;
     }
-    
+
     public function getHeight()
     {
         return $this->height;
     }
-    
+
     public function getWidth()
     {
         return $this->width;
     }
-    
+
     public function getLength()
     {
         return $this->length;
@@ -101,7 +102,7 @@ class Product extends Entity
     {
         parent::setDB();
         $tableName = parent::$tableName;
-    
+
         $sql = "INSERT INTO $tableName (sku, name, price, weight, size, height, length, width) 
                 VALUES (:sku, :name, :price, :weight, :size, :height, :length, :width)";
         $stmt = self::$db->prepare($sql);
@@ -113,7 +114,7 @@ class Product extends Entity
         $stmt->bindParam(':height', $this->getHeight());
         $stmt->bindParam(':length', $this->getLength());
         $stmt->bindParam(':width', $this->getWidth());
-            
+
         if ($stmt->execute()) {
             $products = [
                 'sku' => $this->getSku(),
@@ -132,6 +133,6 @@ class Product extends Entity
             ];
         }
 
-        return ['error' => "No product matches the SKU of $sku"];
+        return ['error' => "Unable to add new product!"];
     }
 }

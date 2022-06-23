@@ -9,7 +9,6 @@ use App\Lib\Response;
 
 class ProductController implements IController
 {
-
     public static function indexAction($twig)
     {
         echo $twig->render('index.html');
