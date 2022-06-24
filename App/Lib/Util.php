@@ -22,4 +22,31 @@ class Util
         }
         return $products_array;
     }
+
+    public static function validateInput($data)
+    {
+        $result = [];
+
+        if (!$data->name) {
+            $result['name'] = "Product Name field can't be empty!";
+        }
+
+        if (!$data->sku) {
+            $result['sku'] = "Product SKU field can't be empty!";
+        }
+
+        if (!$data->price) {
+            $result['price'] = "Product Price field can't be empty!";
+        }
+
+        if ($data->price && !\is_numeric($data->price)) {
+            $result['price'] = "Product Price must be number";
+        }
+
+        if (($result['name']) || ($result['sku']) || ($result['price'])) {
+            return $result;
+        }
+
+        return;
+    }
 }

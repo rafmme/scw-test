@@ -4,11 +4,18 @@
 
     use App\Services\IService;
     use App\Models\Product;
+    use App\Lib\Util;
 
 class ProductsService implements IService
 {
     public static function create($data)
     {
+        $errors = Util::validateInput($data);
+
+        if ($errors) {
+            return ['errors' => $errors];
+        }
+
         $product = new Product();
         $product->setName($data->name);
         $product->setSku(strtoupper($data->sku));
@@ -23,7 +30,9 @@ class ProductsService implements IService
         $productExist = self::fetchOne($sku);
 
         if ($productExist) {
-            return ['error' => "There is a product already with the SKU of $sku"];
+            return [
+                'error' => "There is a product already with the SKU of $sku"
+            ];
         }
 
         return $product->save();

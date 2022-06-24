@@ -38,7 +38,16 @@ class ProductController implements IController
     {
         $data = $req->getJSON();
         $product =  ProductsService::create($data);
-        return $res->toJSON($product);
+
+        if ($product['error']) {
+            return $res->status(409)->toJSON($product);
+        }
+
+        if ($product['errors']) {
+            return $res->status(400)->toJSON($product);
+        }
+
+        return $res->status(201)->toJSON($product);
     }
 
     public static function delete(Request $req, Response $res)
@@ -50,7 +59,9 @@ class ProductController implements IController
             return $res->status(404)->toJSON(['error' => "No product matches the SKU of $sku"]);
         }
 
-        $deleted = ProductsService::remove($sku);
-        return $res->status(204)->toJSON(['message' => "Product with the SKU of $sku has been deleted!"]);
+        ProductsService::remove($sku);
+        return $res->status(200)->toJSON([
+            'message' => "Product with the SKU of $sku has been deleted!"
+        ]);
     }
 }

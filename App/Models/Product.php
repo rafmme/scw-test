@@ -20,7 +20,7 @@ class Product extends Entity
 
     public function setSku($sku = '')
     {
-        $this->sku = $sku !== '' || $sku !== NULL ? $sku : Util::generateSku($this->getName());
+        $this->sku = $sku !== '' || $sku !== null ? $sku : Util::generateSku($this->getName());
     }
 
     public function setName($name)
