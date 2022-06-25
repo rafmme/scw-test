@@ -32,6 +32,11 @@ export const AddProduct = () => {
     inputError,
     save,
     sku,
+    size,
+    weight,
+    width,
+    length,
+    height,
     response,
   } = state;
 
@@ -55,7 +60,7 @@ export const AddProduct = () => {
         save: false,
         hasResponseError: result?.error || result?.errors,
         response: result,
-      })
+      });
     };
 
     if (save) {
@@ -85,7 +90,7 @@ export const AddProduct = () => {
         errors: {},
         message: '',
       },
-    })
+    });
   }
 
   const onSave = (e) => {
@@ -103,14 +108,19 @@ export const AddProduct = () => {
           errors: {},
           message: '',
         },
-      })
+      });
       return;
     }
 
     setState({
       ...state,
+      size: productType !== 'DVD' ? undefined : size,
+      weight: productType !== 'Book' ? undefined : weight,
+      height: productType !== 'Furniture' ? undefined : height,
+      width: productType !== 'Furniture' ? undefined : width,
+      length: productType !== 'Furniture' ? undefined : length,
       save: true,
-    })
+    });
   }
   
   return (

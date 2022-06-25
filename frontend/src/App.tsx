@@ -9,7 +9,7 @@ const App = () => {
         <Route path='/' exact>
           <Pages.Home />
         </Route>
-        <Route path='/add-product'>
+        <Route path='/add-product' exact>
           <Pages.AddProduct />
         </Route>
       </Switch>
