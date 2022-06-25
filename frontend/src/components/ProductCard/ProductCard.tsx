@@ -25,7 +25,7 @@ export const ProductCard = (
             <div className="flex-column prod-info">
               <p>{sku}</p>
               <p>{name}</p>
-              <p>{`${price}$`}</p>
+              <p>{`${price} $`}</p>
               {size && <p>Size: {`${size}`} MB</p>}
               {weight && <p>Weight: {`${weight}`} KG</p>}
               {(height && width && length) && <p>Dimension: {`${height}x${width}x${length}`}</p>}

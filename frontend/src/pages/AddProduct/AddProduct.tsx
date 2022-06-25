@@ -45,7 +45,7 @@ export const AddProduct = () => {
 
     async function postData () {
       const result = await new HTTPRequestBuilder()
-      .withURL('http://localhost:9000/products')
+      .withURL('/products')
       .method('post')
       .queryParams(undefined)
       .headers({

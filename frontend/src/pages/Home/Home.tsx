@@ -36,11 +36,12 @@ export const Home = () => {
 
     if (executeDeletion && listOfProductsForDeletion.length > 0) {
       listOfProductsForDeletion.forEach(sku => {
-        executeHttpRequest(`http://localhost:9000/products/${sku}`, 'DELETE');
+        executeHttpRequest(`/products/${sku}`, 'DELETE');
       });
+      history.go(0);
     }
 
-    executeHttpRequest('http://localhost:9000/products', 'GET');
+    executeHttpRequest('/products', 'GET');
 
     return () => {
       call = false;
