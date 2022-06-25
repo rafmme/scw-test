@@ -33,7 +33,7 @@ abstract class Entity
     {
         self::setDB();
         $tableName = self::$tableName;
-        $stmt = self::$db->query("SELECT * from $tableName ORDER BY id ASC");
+        $stmt = self::$db->query("SELECT * from $tableName ORDER BY id DESC");
         $products = $stmt->fetchAll();
         $result = [];
 
