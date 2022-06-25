@@ -4,7 +4,6 @@
 
     use App\Models\Entity;
     use App\Lib\Util;
-    use App\Lib\DotEnv;
     use App\Database\MySQLConnection;
 
 class Product extends Entity

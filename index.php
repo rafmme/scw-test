@@ -9,6 +9,9 @@ use App\Lib\Response;
 use App\Controllers\ProductController;
 use App\Database\MySQLConnection;
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 
 Router::get('/', function (Request $req, Response $res, $twig) {
     return ProductController::indexAction($twig);

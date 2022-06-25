@@ -30,7 +30,7 @@ export const Home = () => {
         ...state,
         executeDeletion: method.toLowerCase() === 'get' ? false : executeDeletion,
         listOfProductsForDeletion: method.toLowerCase() === 'get' ? [] : listOfProductsForDeletion,
-        results: method.toLowerCase() === 'get' ? response?.products : results,
+        results: method.toLowerCase() === 'get' ? response?.products || results : results,
       });
     };
 

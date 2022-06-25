@@ -43,7 +43,7 @@ class Router
             $params = array_map(function ($param) {
                 return $param[0];
             }, $matches);
-            $loader = new \Twig\Loader\FilesystemLoader('public_html');
+            $loader = new \Twig\Loader\FilesystemLoader('views');
             $twig =  new \Twig\Environment($loader);
             $cb(new Request($params), new Response(), $twig);
         }

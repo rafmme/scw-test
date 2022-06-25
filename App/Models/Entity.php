@@ -3,7 +3,6 @@
     namespace App\Models;
 
     use App\Lib\Util;
-    use App\Lib\DotEnv;
     use App\Database\MySQLConnection;
 
 abstract class Entity
@@ -13,9 +12,8 @@ abstract class Entity
 
     public static function setDB()
     {
-        (new DotEnv('.env'))->load();
         self::$db = (new MySQLConnection())->getConnection();
-        self::$tableName =  \getenv('TABLE_NAME');
+        self::$tableName =  $_ENV['TABLE_NAME'];
     }
 
     public static function destroy($sku)

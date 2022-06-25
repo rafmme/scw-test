@@ -4,7 +4,6 @@ namespace App\Database;
 
 use PDO;
 use App\Database\IDBConnection;
-use App\Lib\DotEnv;
 
 class MySQLConnection implements IDBConnection
 {
@@ -13,13 +12,11 @@ class MySQLConnection implements IDBConnection
     public function __construct()
     {
         try {
-            (new DotEnv('.env'))->load();
-
-            $host =  \getenv('DB_HOST');
-            $port =  \getenv('DB_PORT');
-            $db =  \getenv('DB_NAME');
-            $user =  \getenv('DB_USER');
-            $password = \getenv('DB_PASSWORD');
+            $host =  $_ENV['DB_HOST'];
+            $port =  $_ENV['DB_PORT'];
+            $db =  $_ENV['DB_NAME'];
+            $user =  $_ENV['DB_USER'];
+            $password = $_ENV['DB_PASSWORD'];
             $dsn = "mysql:host=$host;port=$port;dbname=$db;";
 
             $this->dbConnection = new PDO(
