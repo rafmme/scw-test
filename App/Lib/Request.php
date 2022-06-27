@@ -13,9 +13,6 @@ class Request
         $this->params = $params;
         $this->reqMethod = trim($_SERVER['REQUEST_METHOD']);
         $this->contentType = !empty($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-        \header("Access-Control-Allow-Origin: *");
-        \header("Access-Control-Allow-Headers: *");
-        \header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
     }
 
     public function getBody()

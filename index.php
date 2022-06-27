@@ -10,7 +10,11 @@ use App\Controllers\ProductController;
 use App\Database\MySQLConnection;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+$dotenv->safeLoad();
+
+\header("Access-Control-Allow-Origin: *");
+\header("Access-Control-Allow-Headers: *");
+\header("Access-Control-Allow-Methods: GET, POST, DELETE");
 
 
 Router::get('/', function (Request $req, Response $res, $twig) {
@@ -21,11 +25,11 @@ Router::get('/products', function (Request $req, Response $res) {
     return ProductController::fetchAll($req, $res);
 });
 
-Router::get('/products/([A-Za-z0-9]*)', function (Request $req, Response $res) {
+Router::get('/products/([A-Z-_a-z0-9]*)', function (Request $req, Response $res) {
     return ProductController::fetchOne($req, $res);
 });
 
-Router::delete('/products/([A-Za-z0-9]*)', function (Request $req, Response $res) {
+Router::delete('/products/([A-Z-_a-z0-9]*)', function (Request $req, Response $res) {
     return ProductController::delete($req, $res);
 });
 
@@ -36,6 +40,4 @@ Router::post('/products', function (Request $req, Response $res) {
 App::run();
 
 ?>
-
-
 

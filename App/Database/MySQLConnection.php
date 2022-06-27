@@ -12,12 +12,14 @@ class MySQLConnection implements IDBConnection
     public function __construct()
     {
         try {
-            $host =  $_ENV['DB_HOST'];
-            $port =  $_ENV['DB_PORT'];
-            $db =  $_ENV['DB_NAME'];
-            $user =  $_ENV['DB_USER'];
-            $password = $_ENV['DB_PASSWORD'];
-            $dsn = "mysql:host=$host;port=$port;dbname=$db;";
+            $dbUrl = parse_url($_ENV['DATABASE_URL']);
+            $host =  $dbUrl['host'];
+            $port =  $dbUrl['port'];
+            $db =  substr($dbUrl['path'], 1);
+            $user =  $dbUrl['user'];
+            $password = $dbUrl['pass'];
+            $driver =  $_ENV['DB_DRIVER'];
+            $dsn = "$driver:host=$host;port=$port;dbname=$db;";
 
             $this->dbConnection = new PDO(
                 $dsn,
